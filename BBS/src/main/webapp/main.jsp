@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.io.PrintWriter" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,13 @@
 <title>JSP 게시판 웹 사이트</title>
 </head>
 <body>
+	<%
+		String userID = null;
+		//userID가 가져와진다면(로그인 된 상태면) 세션에 있는 값 가져옴.
+		if(session.getAttribute("userID") != null){
+			userID = (String) session.getAttribute("userID");
+		}
+	%>
 	<nav class="navbar navbar-default"><!-- bootstrap에서 제공하는 기본형 navbar -->
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
@@ -23,39 +31,42 @@
 		
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="main.jsp">main</a></li>
-				<li><a href="bbs.jsp">board</a></li>
+				<li class="active"><a href="main.jsp">메인</a></li>
+				<li><a href="bbs.jsp">게시판</a></li>
 			</ul>
+			<%
+				if(userID == null){//로그인 안된 상태일 때 구성.
+			%>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">login<span class="caret"></span></a>
+						aria-expanded="false">접속하기<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li class="active"><a href="login.jsp">로그인</a></li>
-						<li><a href="join.jsp">sign up</a></li>
+						<li><a href="login.jsp">로그인</a></li>
+						<li><a href="join.jsp">회원가입</a></li>
 					</ul>
 				</li>
 			</ul>
+			<%
+				} else {//로그인 된 상태면 보이는 구성.
+			%>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">회원관리<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="logoutAction.jsp">로그아웃</a></li>
+					</ul>
+				</li>
+			</ul>	
+			<%
+				}
+			%>
 		</div>
 	</nav>
-	<div class="container">
-		<div class="col-lg-4"></div>
-		<div class="col-lg-4"><!-- 1200px 이하에서 화면 배치 달라짐. -->
-			<div class="jumbotron" style="padding-top: 20px;"><!--로그인 창 나타내기 위해 jumbotron 사용. -->
-				<form method="post" action="loginAction.jsp">
-					<h3 style="text-align: center;">로그인 화면</h3>
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="ID" name="userID" maxlength="20">
-					</div>
-					<div class="form-group">
-						<input type="password" class="form-control" placeholder="PW" name="userPassword" maxlength="20">
-					</div>
-					<input type="submit" class="btn btn-primary form-control" value="login">
-				</form>
-			</div>
-		</div>
-	</div>		
+	
 	<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 	<script src="js/bootstrap.js"></script>
 </body>

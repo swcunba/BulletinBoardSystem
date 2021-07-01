@@ -1,5 +1,6 @@
 package user;
 //ctr + shift + o로 라이브러리 자동 추가 가능.
+//db연동, db 이용하는 작업을 정의.
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -40,5 +41,21 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		return -2;//db 오류.
+	}
+	
+	public int join(User user) {
+		String SQL = "INSERT INRO USER VALUES(?, ?, ?, ?, ?)";
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1,  user.getUserID());
+			pstmt.setString(2,  user.getUserPassword());
+			pstmt.setString(3,  user.getUserName());
+			pstmt.setString(4,  user.getUserGender());
+			pstmt.setString(5,  user.getUserEmail());
+			return pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();		
+		}
+		return -1;//db 오류.
 	}
 }

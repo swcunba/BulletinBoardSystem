@@ -43,15 +43,31 @@
 		<div class="col-lg-4"></div>
 		<div class="col-lg-4"><!-- 1200px 이하에서 화면 배치 달라짐. -->
 			<div class="jumbotron" style="padding-top: 20px;"><!--로그인 창 나타내기 위해 jumbotron 사용. -->
-				<form method="post" action="loginAction.jsp">
-					<h3 style="text-align: center;">로그인 화면</h3>
+				<form method="post" action="joinAction.jsp">
+					<h3 style="text-align: center;">회원가입 화면</h3>
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="ID" name="userID" maxlength="20">
 					</div>
 					<div class="form-group">
 						<input type="password" class="form-control" placeholder="PW" name="userPassword" maxlength="20">
 					</div>
-					<input type="submit" class="btn btn-primary form-control" value="login">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="NAME" name="userName" maxlength="20">
+					</div>
+					<div class="form-group" style="text-align:center;">
+						<div class="btn-group" data-toggle="buttons">
+							<label class="btn btn-primary active">
+								<input type="radio" name="userGender" autocomplete="off" value="남자" checked>남자
+							</label>
+							<label class="btn btn-primary active">
+								<input type="radio" name="userGender" autocomplete="off" value="여자" checked>여자
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="E-MAIL" name="userEmail" maxlength="50">
+					</div>
+					<input type="submit" class="btn btn-primary form-control" value="sign up">
 				</form>
 			</div>
 		</div>

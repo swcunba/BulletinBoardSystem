@@ -14,11 +14,26 @@
 </head>
 <body>
 	<%
+		session.setAttribute("userID", user.getUserID());
+		String userID = null;
+		if(session.getAttribute("userID") != null){
+			userID = (String) session.getAttribute("userID");	
+		}
+		/*
+		if(userID != null){
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('이미 로그인이 되어있습니다.')");
+			script.println("location.href = 'main.jsp'");//이전 페이지로.
+			script.println("</script>");
+		}*/
+		//UserDAO 클래스에서 객체, 메소드 가져와서 작업 처리 과정 구현.
 		UserDAO userDAO = new UserDAO();
 		int result = userDAO.login(user.getUserID(), user.getUserPassword());
 		
 		if(result == 1){
 			//로그인 정보 일치.
+			session.setAttribute(user.getUserID(), user.getUserPassword());//세션(고유번호) 부여.
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("location.href = 'main.jsp'");
@@ -52,8 +67,5 @@
 			script.println("</script>");
 		}
 	%>
-	
-	
-	
 </body>
 </html>

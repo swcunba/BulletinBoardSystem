@@ -1,5 +1,5 @@
 package user;
-
+//user에 대한 정보를 어떤 형태로 구성할지 결정.
 public class User {
 	private String userID;
 	private String userPassword;
@@ -37,6 +37,4 @@ public class User {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-	
-	
 }
