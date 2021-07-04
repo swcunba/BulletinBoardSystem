@@ -134,4 +134,32 @@ public class BbsDAO {
 		}
 		return null;
 	}
+	
+	public int update(int bbsID, String bbsTitle, String bbsContent) {
+		//인자로 들어온 제목과 내용으로 업데이트 진행.
+		String SQL = "UPDATE BBS SET bbsTitle = ?, bbsContent = ? WHERE bbsID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, bbsTitle);
+			pstmt.setString(2, bbsContent);
+			pstmt.setInt(3, bbsID);
+			return pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1;//db 오류.	
+	}
+	
+	public int delete(int bbsID) {
+		//인자로 들어온 id에 해당되는 글 삭제 진행.
+		String SQL = "UPDATE BBS SET bbsAvailable = 0 WHERE bbsID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, bbsID);
+			return pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1;//db 오류.	
+	}
 }
