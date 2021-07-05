@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width", initial-scale="1"><!-- 반응형 웹 설정. -->
 <link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/custom.css">
 <title>JSP 게시판 웹 사이트</title>
 </head>
 <body>
@@ -66,7 +67,16 @@
 			%>
 		</div>
 	</nav>
-	
+	<!-- 점보트론으로 메인 화면 디자인. -->
+	<div class="container">
+	 <div class="jumbotron">
+	 	<div class="container">
+	 		<h1>웹 사이트 소개</h1>
+	 		<p>BootStrap으로 디자인, JSP 웹 사이트</p>
+	 		<p><a class="btn btn-primary btn-pull" href="#" role="buttton">자세히 알아보기</a></p>
+	 	</div>
+	 </div>
+	</div>
 	<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 	<script src="js/bootstrap.js"></script>
 </body>
